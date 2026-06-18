@@ -6,24 +6,38 @@ import os
 # STEP 20 : Database Path
 ###########################################################
 
-DB_PATH = "database/churn_history.db"
+BASE_DIR = os.getcwd()
 
 
-###########################################################
-# STEP 20.1 : Create Database Folder
-###########################################################
+DB_DIR = os.path.join(
+
+    BASE_DIR,
+
+    "database"
+
+)
+
 
 os.makedirs(
 
-    os.path.dirname(DB_PATH),
+    DB_DIR,
 
     exist_ok=True
 
 )
 
 
+DB_PATH = os.path.join(
+
+    DB_DIR,
+
+    "churn_history.db"
+
+)
+
+
 ###########################################################
-# STEP 20.2 : Connect Database
+# STEP 20.1 : Connect Database
 ###########################################################
 
 conn = sqlite3.connect(
@@ -34,11 +48,12 @@ conn = sqlite3.connect(
 
 )
 
+
 cursor = conn.cursor()
 
 
 ###########################################################
-# STEP 20.3 : Create Table
+# STEP 20.2 : Create Table
 ###########################################################
 
 cursor.execute(
