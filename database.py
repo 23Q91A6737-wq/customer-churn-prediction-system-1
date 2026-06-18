@@ -1,9 +1,34 @@
 import sqlite3
+import os
 
+
+###########################################################
+# STEP 20 : Database Path
+###########################################################
+
+DB_PATH = "database/churn_history.db"
+
+
+###########################################################
+# STEP 20.1 : Create Database Folder
+###########################################################
+
+os.makedirs(
+
+    os.path.dirname(DB_PATH),
+
+    exist_ok=True
+
+)
+
+
+###########################################################
+# STEP 20.2 : Connect Database
+###########################################################
 
 conn = sqlite3.connect(
 
-    "database/churn_history.db",
+    DB_PATH,
 
     check_same_thread=False
 
@@ -11,6 +36,10 @@ conn = sqlite3.connect(
 
 cursor = conn.cursor()
 
+
+###########################################################
+# STEP 20.3 : Create Table
+###########################################################
 
 cursor.execute(
 
@@ -35,5 +64,6 @@ timestamp TEXT
 '''
 
 )
+
 
 conn.commit()
